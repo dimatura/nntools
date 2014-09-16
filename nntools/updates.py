@@ -74,7 +74,7 @@ def rmsprop(loss, all_params, learning_rate=1.0, rho=0.9, epsilon=1e-6):
     also check http://climin.readthedocs.org/en/latest/rmsprop.html
     """
     all_grads = [theano.grad(loss, param) for param in all_params]
-    all_accumulators = [theano.shared(np.zeros(param_i.get_value().shape, dtype=theano.config.floatX)) for param in all_params]
+    all_accumulators = [theano.shared(np.zeros(param_i.get_value().shape, dtype=theano.config.floatX)) for param_i in all_params]
 
     updates = []
     for param_i, grad_i, acc_i in zip(all_params, all_grads, all_accumulators):
